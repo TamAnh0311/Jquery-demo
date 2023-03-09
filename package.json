@@ -1,0 +1,19 @@
+{
+  "name": "jquery-ajax-example-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "webpack",
+    "serve": "webpack serve --open"
+  },
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "json-server": "^0.17.0"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
