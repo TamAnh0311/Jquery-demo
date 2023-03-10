@@ -7,8 +7,10 @@ export function baseApiAsync(method, endpoint, payload = null) {
         url: API_ROOT + endpoint,
         data,
         beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-Type", "application/json");
+
             const token = localStorage.getItem('accessToken')
-            xhr.setRequestHeader('Authorization', token)
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`)
         }
     })
 }

@@ -1,16 +1,16 @@
 import { updateTask, getTaskById } from "../js/taskApi";
 import { isValidData } from "../js/validate";
+import {setEvent} from "../js/common"
 
-const userId = getIdQueryParam();
-const taskStatus = 1
+const taskId = getIdQueryParam();
+const TASK_STATUS = 1
 
 $(async function () {
-  
-  const data = await getTaskById(userId);
+  const res = await getTaskById(taskId);
 
-  if (data?.task) {
-    renderContent(data.task);
-  }
+  renderContent(res.data);
+
+  setEvent("#btn-save", "click", onUpdateTask)
 });
 
 function getIdQueryParam() {
@@ -20,8 +20,8 @@ function getIdQueryParam() {
 
 function renderContent(task) {
   if (task) {
-    $("#name").val(task.Name);
-    $("#description").val(task.Description);
+    $("#name").val(task.name);
+    $("#description").val(task.description);
   } else {
     $("#form").html("Task not exist!");
     $("#btn-save").hide();
@@ -31,10 +31,11 @@ function renderContent(task) {
 async function onUpdateTask() {
   if (isValidData()) {
     const task = {
-      id: userId,
+      id: parseInt(taskId),
       name: $("#name").val(),
       description: $("#description").val(),
-      status: 1
+      status: TASK_STATUS,
+      updateTask: new Date()
     };
 
 
